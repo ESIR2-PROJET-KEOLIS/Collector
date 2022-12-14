@@ -32,9 +32,9 @@ def verifArg(tab_argv):
     collectorType = ["REQUEST", "CURL"]
     if len(tab_argv) < 4 or len(tab_argv) > 5:
         log.error("Wrong number of arguments")
-        log.info("Usage : python3 AppCollector.py <name> <url> <time> or python3 AppCollector.py <name> <url>")
+        log.info("Usage : python3 AppCollector.py <name> <type> <url> <time> or python3 AppCollector.py <name> <url>")
         log.info(
-            "Example : python3 AppCollector.py weather https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=1234567890 60")
+            "Example : python3 AppCollector.py weather REQUEST https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=1234567890 60")
         log.info("help : python3 AppCollector.py help")
         exit(1)
     elif len(tab_argv) == 5:
@@ -58,12 +58,13 @@ def collector_choice(collector_type):
 
 
 def help():
-    log.info("Usage : python3 AppCollector.py <name> <url> <time> or python3 AppCollector.py <name> <url>")
+    log.info("Usage : python3 AppCollector.py <name> <type> <url> <time> or python3 AppCollector.py <name> <type> <url>")
     log.info("<name> : name of the collector")
+    log.info("<type> : type of the collector")
     log.info("<url> : url of the API")
     log.info("<time> : time between each request in seconds")
     log.info(
-        "Example : python3 AppCollector.py weather https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=1234567890 60")
+        "Example : python3 AppCollector.py weather REQUEST https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=1234567890 60")
 
     exit(0)
 
