@@ -8,7 +8,7 @@ from loguru import logger as log
 def setup_logger():
     log.remove()
     log.add(stdout, format="{time} {level} {message}", level="INFO")
-    log.add(f"./logs/{argv[1]}Collector.log", format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",
+    log.add(f"../logs/{argv[1]}Collector.log", format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",
             rotation="1 week",
             retention="1 month", level="DEBUG")
 
