@@ -18,15 +18,13 @@ def thread_function(name, type, url, time):
 
 def create_threads():
     threads = []
-    time = [60, 60]
-    name = ['getPositionAllBus','getPositionAllBus2']
-    type = ['REQUEST', 'REQUEST']
+    time = [10]
+    name = ['getPositionAllBus']
+    type = ['REQUEST']
     url = [
-        "https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-bus-vehicules-position-tr&q=&rows=1000&facet=nomcourtligne",
-        "https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-bus-vehicules-position-tr&q=&rows=1000&facet=nomcourtligne"
-    ]
-    for key in range(len(name)):
-        threads.append(threading.Thread(target=thread_function, args=(name[key], type[key], url[key], time[key])))
+        "\"https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-bus-vehicules-position-tr&q=&rows=1000\""]
+    for key, i in enumerate(time):
+        threads.append(threading.Thread(target=thread_function, args=(name[key], type[key], url[key], i,)))
 
     return threads
 
