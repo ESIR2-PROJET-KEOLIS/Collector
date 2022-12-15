@@ -14,13 +14,11 @@ class RequestCollector(CollectorInterface):
         try:
             response = request("GET", self.__url)
             response.raise_for_status()
-            log.debug(response.text)
         except Exception as e:
             log.error(e)
             return {}
         else:
             log.info(f"Response status code: {response.status_code}")
-            log.debug(f"Response content: {response.content}")
             return response.json()
 
     def get_response(self):

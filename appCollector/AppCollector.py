@@ -1,8 +1,9 @@
 from sys import argv, stdout
 from time import sleep
-from datetime import datetime
 from RequestCollector import RequestCollector
 from loguru import logger as log
+
+import pika
 
 
 def setup_logger():
@@ -14,18 +15,24 @@ def setup_logger():
 
 
 def main(name, collector, time=-1):
+    credentials = pika.PlainCredentials('user', 'password')
+    connection = pika.BlockingConnection(
+        pika.ConnectionParameters(host='localhost', credentials=credentials))
+    channel = connection.channel()
+    channel.queue_declare(queue=name)
     log.info(f"Starting appCollector : {name} with {time}s interval")
     while True:
         # Get Data API with request
         data = collector.get_response()
-        log.debug(f'GET Data time :{str(datetime.now())}')
-        log.debug(data)
-        # TODO : send to rabbitmq
-        log.debug(f'SEND Data time:{str(datetime.now())}')
+        log.debug("Data received")
+
+        channel.basic_publish(exchange='', routing_key=name, body=str(data))
+        log.debug("Data sent to rabbitMQ")
 
         if time == -1:
             break
         sleep(int(time))
+    connection.close()
 
 
 def verifArg(tab_argv):
@@ -58,7 +65,8 @@ def collector_choice(collector_type):
 
 
 def help():
-    log.info("Usage : python3 AppCollector.py <name> <type> <url> <time> or python3 AppCollector.py <name> <type> <url>")
+    log.info(
+        "Usage : python3 AppCollector.py <name> <type> <url> <time> or python3 AppCollector.py <name> <type> <url>")
     log.info("<name> : name of the collector")
     log.info("<type> : type of the collector")
     log.info("<url> : url of the API")
