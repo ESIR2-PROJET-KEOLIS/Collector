@@ -9,6 +9,10 @@ log.add("../logs/appCollector.log", format="{time:YYYY-MM-DD at HH:mm:ss} | {lev
         retention="1 month", level="DEBUG")
 
 
+
+#connexion to rabbitMQ
+
+
 def thread_function(name, type, url, time):
     print("Thread %s: starting", name)
     TheCommand = f'python3 ../appCollector/AppCollector.py {name} {type} {url} {time}'
@@ -19,7 +23,7 @@ def thread_function(name, type, url, time):
 def create_threads():
     threads = []
     time = [10]
-    name = ['getPositionAllBus']
+    name = ['PositionAllBus']
     type = ['REQUEST']
     url = [
         "\"https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-bus-vehicules-position-tr&q=&rows=1000\""]
