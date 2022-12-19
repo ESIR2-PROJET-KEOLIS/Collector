@@ -15,9 +15,8 @@ def setup_logger():
 
 
 def main(name, collector, time=-1):
-    credentials = pika.PlainCredentials('user', 'password')
     connection = pika.BlockingConnection(
-        pika.ConnectionParameters(host='localhost', credentials=credentials))
+        pika.ConnectionParameters(host='rabbitmq'))
     channel = connection.channel()
     channel.queue_declare(queue=name)
     log.info(f"Starting appCollector : {name} with {time}s interval")
