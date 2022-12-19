@@ -1,5 +1,6 @@
 import os
 import threading
+import time
 from sys import stdout
 from loguru import logger as log
 
@@ -15,7 +16,7 @@ log.add("../logs/appCollector.log", format="{time:YYYY-MM-DD at HH:mm:ss} | {lev
 
 def thread_function(name, type, url, time):
     print("Thread %s: starting", name)
-    TheCommand = f'python3 ../appCollector/AppCollector.py {name} {type} {url} {time}'
+    TheCommand = f'python3 appCollector/AppCollector.py {name} {type} {url} {time}'
     os.system(TheCommand)
     print("Thread %s: finishing", name)
 
@@ -34,6 +35,8 @@ def create_threads():
 
 
 if __name__ == '__main__':
+    log.info("Initial Sleep")
+    time.sleep(10)
     log.info("Starting appCollector")
     threads = create_threads()
     for thread in threads:
