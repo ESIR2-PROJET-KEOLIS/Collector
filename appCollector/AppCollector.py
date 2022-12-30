@@ -18,7 +18,7 @@ def main(name, collector, time=-1):
     connection = pika.BlockingConnection(
         pika.ConnectionParameters(host='rabbitmq'))
     channel = connection.channel()
-    channel.queue_declare(queue=name)
+    channel.queue_declare(queue=name, durable=True)
     log.info(f"Starting appCollector : {name} with {time}s interval")
     while True:
         # Get Data API with request
