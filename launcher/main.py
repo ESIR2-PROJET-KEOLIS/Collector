@@ -36,7 +36,7 @@ def create_threads():
 
 if __name__ == '__main__':
     log.info("Initial Sleep")
-    time.sleep(10)
+    time.sleep(30)
     log.info("Starting appCollector")
     threads = create_threads()
     for thread in threads:
