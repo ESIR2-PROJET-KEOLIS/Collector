@@ -16,7 +16,16 @@ log.add("../logs/appCollector.log", format="{time:YYYY-MM-DD at HH:mm:ss} | {lev
 
 def thread_function(name, type, url, time):
     print("Thread %s: starting", name)
-    TheCommand = f'python3 appCollector/AppCollector.py {name} {type} {url} {time}'
+    PROD = os.environ.get('PROD')
+    if PROD == "True":
+        log.info("PROD")
+        os.system(f"python3 AppCollector.py {name} {type} {url} {time}")
+        TheCommand = f'python3 appCollector/AppCollector.py {name} {type} {url} {time}'
+    else:
+        log.info("DEV")
+        os.system(f"python3 AppCollector.py {name} {type} {url} {time}")
+        TheCommand = f'python3 ../appCollector/AppCollector.py {name} {type} {url} {time}'
+
     os.system(TheCommand)
     print("Thread %s: finishing", name)
 
@@ -36,7 +45,6 @@ def create_threads():
 
 if __name__ == '__main__':
     log.info("Initial Sleep")
-    time.sleep(30)
     log.info("Starting appCollector")
     threads = create_threads()
     for thread in threads:
