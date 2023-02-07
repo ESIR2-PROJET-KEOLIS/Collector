@@ -10,8 +10,7 @@ log.add("../logs/appCollector.log", format="{time:YYYY-MM-DD at HH:mm:ss} | {lev
         retention="1 month", level="DEBUG")
 
 
-
-#connexion to rabbitMQ
+# connexion to rabbitMQ
 
 
 def thread_function(name, type, url, time):
@@ -19,12 +18,14 @@ def thread_function(name, type, url, time):
     PROD = os.environ.get('PROD')
     if PROD == "True":
         log.info("PROD")
-        os.system(f"python3 AppCollector.py {name} {type} {url} {time}")
         TheCommand = f'python3 appCollector/AppCollector.py {name} {type} {url} {time}'
+        log.info(os.system(TheCommand))
+        log.info(TheCommand)
     else:
         log.info("DEV")
-        os.system(f"python3 AppCollector.py {name} {type} {url} {time}")
         TheCommand = f'python3 ../appCollector/AppCollector.py {name} {type} {url} {time}'
+        log.info(os.system(TheCommand))
+        log.info(TheCommand)
 
     os.system(TheCommand)
     print("Thread %s: finishing", name)
