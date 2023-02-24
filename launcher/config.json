@@ -5,6 +5,36 @@
       "type": "REQUEST",
       "time": 20,
       "url": "\"https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-bus-vehicules-position-tr&q=&rows=1000\""
+    },
+    {
+      "name": "pictograms",
+      "type": "REQUEST",
+      "time": 86400,
+      "url": "\"/api/records/1.0/search/?dataset=tco-bus-lignes-pictogrammes-dm&q=&rows=10000&facet=nomcourtligne&facet=date&facet=resolution\""
+    },
+    {
+      "name": "busStopLocations",
+      "type": "REQUEST",
+      "time": 86400,
+      "url": "\"/api/records/1.0/search/?dataset=tco-bus-topologie-pointsarret-td&q=&rows=10000&facet=id&facet=datedebutversion&facet=estversionactive&facet=nom&facet=codeinseecommune&facet=nomcommune&facet=estaccessiblepmr&facet=mobilier&facet=visibilite\""
+    },
+    {
+      "name": "metroStopLocations",
+      "type": "REQUEST",
+      "time": 86400,
+      "url": "\"/api/records/1.0/search/?dataset=tco-metro-topologie-pointsarret-td&q=&rows=10000&facet=id&facet=nom&facet=codeinseecommune&facet=nomcommune&facet=nomstationparente&facet=estaccessiblepmr\""
+    },
+    {
+      "name": "GTFS",
+      "type": "REQUEST",
+      "time": 86400,
+      "url": "\"/api/records/1.0/search/?dataset=tco-busmetro-horaires-gtfs-versions-td&q=\""
+    },
+    {
+      "name": "PARCOURS",
+      "type": "REQUEST",
+      "time": 86400,
+      "url": "\"/api/records/1.0/search/?dataset=tco-bus-topologie-parcours-td&q=&rows=1000&facet=datedebutversion&facet=estversionactive&facet=idligne&facet=nomcourtligne&facet=senscommercial&facet=type&facet=nomarretdepart&facet=nomarretarrivee&facet=estaccessiblepmr&facet=visibilite\""
     }
   ]
 }
