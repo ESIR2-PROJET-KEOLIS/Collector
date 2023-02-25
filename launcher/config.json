@@ -34,7 +34,7 @@
       "name": "PARCOURS",
       "type": "REQUEST",
       "time": 86400,
-      "url": "\"/api/records/1.0/search/?dataset=tco-bus-topologie-parcours-td&q=&rows=1000&facet=datedebutversion&facet=estversionactive&facet=idligne&facet=nomcourtligne&facet=senscommercial&facet=type&facet=nomarretdepart&facet=nomarretarrivee&facet=estaccessiblepmr&facet=visibilite\""
+      "url": "\"/api/records/1.0/search/?dataset=tco-bus-topologie-parcours-td&q=&rows=1000\""
     }
   ]
 }
