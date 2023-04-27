@@ -29,7 +29,6 @@ def main(name, collector, time=-1):
             log.info("Waiting for rabbitmq to be ready")
             sleep(1)
 
-
     log.info(f"Starting appCollector : {name} with {time}s interval")
     while True:
         # Get Data API with request
@@ -68,9 +67,9 @@ def verifArg(tab_argv):
             exit(1)
 
 
-def collector_choice(collector_type):
+def collector_choice(collector_type, url):
     if collector_type == "REQUEST":
-        return RequestCollector(argv[3])
+        return RequestCollector(url)
     elif collector_type == "CURL":
         raise NotImplementedError
 
@@ -97,7 +96,7 @@ if __name__ == '__main__':
     if argv[1] == "help":
         help()
     verifArg(argv)
-    collector = collector_choice(argv[2])
+    collector = collector_choice(argv[2], argv[3])
     if len(argv) == 5:
         main(argv[1], collector, int(argv[4]))
     else:
